@@ -1,6 +1,6 @@
 # Sagiv Bar
 
-Algorithm and machine learning engineer with an M.Sc in Intelligent Systems and AI. I work on
+Head of Data and AI Algorithms at Starbird AI, with an M.Sc in Intelligent Systems and AI. I work on
 LLMs and controllable text generation, deep learning, and statistical estimation on noisy
 real-world measurements.
 

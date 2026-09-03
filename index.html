@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sagiv Bar — Signal Processing &amp; Machine Learning</title>
-<meta name="description" content="Sagiv Bar — signal processing, estimation and machine learning. Satellite navigation, RF, and applied ML projects.">
+<title>Sagiv Bar — Machine Learning &amp; Algorithms</title>
+<meta name="description" content="Sagiv Bar — algorithm and machine learning engineer. LLMs and controllable generation, deep learning, and estimation on noisy physical signals.">
 <meta name="color-scheme" content="light dark">
-<meta property="og:title" content="Sagiv Bar — Signal Processing &amp; Machine Learning">
-<meta property="og:description" content="Satellite navigation, RF signal processing, estimation and applied machine learning.">
+<meta property="og:title" content="Sagiv Bar — Machine Learning &amp; Algorithms">
+<meta property="og:description" content="LLMs and controllable generation, deep learning, and estimation on noisy real-world signals.">
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -15,34 +15,98 @@
 
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow">Signal Processing &middot; Estimation &middot; Machine Learning</p>
+    <p class="eyebrow">Machine Learning &middot; LLMs &middot; Algorithms</p>
     <h1>Sagiv&nbsp;Bar</h1>
     <p class="lede">
-      I work on turning noisy physical signals into reliable numbers &mdash; RF and satellite
-      measurements into a position, raw sensor readings into a usable estimate. Most of what
-      I do sits where signal processing meets machine learning.
+      Algorithm and machine learning engineer, M.Sc in Intelligent Systems &amp; AI. I work
+      across applied ML &mdash; LLMs and controllable generation, deep learning, and statistical
+      estimation on noisy physical signals &mdash; picking the method by what the problem needs
+      rather than what is in fashion.
     </p>
     <nav class="links" aria-label="Profiles">
       <a class="btn primary" href="https://github.com/sagiv-bar">GitHub</a>
       <a class="btn" href="https://www.linkedin.com/in/sagiv-bar">LinkedIn</a>
-      <a class="btn" href="#projects">Projects &darr;</a>
+      <a class="btn" href="#research">Research &darr;</a>
     </nav>
   </div>
 </header>
 
 <main class="wrap">
 
-  <section class="now" aria-labelledby="now-h">
-    <h2 id="now-h">Now</h2>
-    <p>
-      Algorithm engineer at <strong>Starbird</strong>, working on satellite-based positioning:
-      signal acquisition and tracking, Doppler-based navigation solutions, and the estimation
-      and calibration layers that sit between raw RF and a position fix.
-    </p>
+  <section id="research" aria-labelledby="research-h">
+    <h2 id="research-h">Research</h2>
+    <article class="card paper">
+      <header>
+        <h3>
+          <a href="https://arxiv.org/abs/2603.22459">LLM-guided headline rewriting for
+          clickability enhancement without clickbait</a>
+        </h3>
+        <p class="domain">arXiv:2603.22459 &middot; cs.CL / cs.AI &middot; March 2026</p>
+        <p class="byline">Yehudit Aperstein, Linoy Halifa, <strong>Sagiv Bar</strong>, Alexander Apartsin</p>
+      </header>
+      <p>
+        Optimising a news headline for engagement usually slides into clickbait. We treat
+        clickbait not as a separate style but as the extreme end of amplifying otherwise
+        legitimate engagement cues &mdash; which turns headline rewriting into a
+        <em>controllable generation</em> problem: strengthen specific engagement attributes
+        under explicit constraints on semantic faithfulness and proportional emphasis.
+      </p>
+      <p>
+        The framework steers an LLM at inference time using the FUDGE
+        (Future Discriminators for Generation) paradigm, with two auxiliary guide models: a
+        clickbait scorer supplying negative guidance against stylistic over-amplification, and
+        an engagement-attribute model supplying positive guidance toward the target. Both guides
+        train on neutral headlines from a curated news corpus, with clickbait counterparts
+        generated synthetically under controlled activation of predefined tactics. Tuning the
+        guidance weights walks the output along a continuum from faithful paraphrase to
+        maximally engaging-but-defensible.
+      </p>
+      <ul class="tags">
+        <li>LLMs</li><li>Controllable generation</li><li>FUDGE</li>
+        <li>Inference-time control</li><li>NLP</li><li>Synthetic data</li>
+      </ul>
+      <p class="actions">
+        <a href="https://arxiv.org/abs/2603.22459">Read the paper</a>
+        <span class="sep" aria-hidden="true">&middot;</span>
+        <a href="https://arxiv.org/pdf/2603.22459">PDF</a>
+      </p>
+    </article>
   </section>
 
   <section id="projects" aria-labelledby="projects-h">
     <h2 id="projects-h">Selected projects</h2>
+
+    <article class="card">
+      <header>
+        <h3>Beyond Binary Clickbait Detection &mdash; Tactic-Level Attribution</h3>
+        <p class="domain">LLMs &middot; NLP &middot; Explainability</p>
+        <p class="byline">Joint work with Linoy Halifa</p>
+      </header>
+      <p>
+        Most clickbait systems stop at a yes/no verdict, which tells an editor nothing
+        actionable. This two-stage framework goes further and names the specific rhetorical
+        tactic being used &mdash; curiosity gap, unfinished narrative, ambiguous reference,
+        provocative question and seven others &mdash; giving the classification an
+        explanation rather than just a score.
+      </p>
+      <p>
+        Stage one is a fine-tuned BERT binary classifier; stage two a multi-label head that
+        attributes up to three tactics per headline. Training data combines a real news corpus
+        with clickbait generated synthetically via controlled GPT-4o prompting, with the
+        train/test split taken <strong>before</strong> generation so no synthetic sibling of a
+        test headline can leak into training. The fine-tuned models are then benchmarked head to
+        head against GPT-4o and Gemini 2.5 in zero-shot and few-shot settings on the same
+        held-out set, scored with macro/micro F1, exact-match ratio and per-class F1 to expose
+        which tactics are genuinely hard.
+      </p>
+      <ul class="tags">
+        <li>PyTorch</li><li>HuggingFace Transformers</li><li>BERT fine-tuning</li>
+        <li>GPT-4o</li><li>Gemini 2.5</li><li>Multi-label</li><li>LLM benchmarking</li>
+      </ul>
+      <p class="actions">
+        <a href="https://github.com/LinoyHalifa/NLP_Project">View the code</a>
+      </p>
+    </article>
 
     <article class="card">
       <header>
@@ -103,8 +167,8 @@
 
     <article class="card">
       <header>
-        <h3>Diabetes Classification &mdash; Classical ML vs. Deep Learning</h3>
-        <p class="domain">Applied ML &middot; Imbalanced data</p>
+        <h3>Classical ML vs. Deep Learning on Imbalanced Health Data</h3>
+        <p class="domain">Applied ML &middot; Model selection</p>
       </header>
       <p>
         A ~15,000-record health dataset with a strong class imbalance, used to compare a
@@ -158,16 +222,27 @@
 
   </section>
 
+  <section class="now" aria-labelledby="now-h">
+    <h2 id="now-h">Now</h2>
+    <p>
+      Algorithm engineer at <strong>Starbird</strong>, on satellite-based positioning: signal
+      acquisition and tracking, Doppler-based navigation, and the estimation and calibration
+      layers between raw RF and a position fix. It is the setting where the modelling has to
+      hold up against physics rather than against a benchmark.
+    </p>
+  </section>
+
   <section class="skills" aria-labelledby="skills-h">
     <h2 id="skills-h">Toolkit</h2>
     <dl>
       <div>
-        <dt>Signal processing &amp; estimation</dt>
-        <dd>DSP, RF, Doppler processing, Kalman filtering, statistical estimation, sensor fusion</dd>
+        <dt>Machine learning &amp; LLMs</dt>
+        <dd>PyTorch, HuggingFace Transformers, TensorFlow, Keras, scikit-learn; transformer
+            fine-tuning, controllable generation, LLM benchmarking and evaluation design</dd>
       </div>
       <div>
-        <dt>Machine learning</dt>
-        <dd>TensorFlow, Keras, PyTorch, scikit-learn, model selection on imbalanced data</dd>
+        <dt>Signal processing &amp; estimation</dt>
+        <dd>DSP, RF, Doppler processing, Kalman filtering, statistical estimation, sensor fusion</dd>
       </div>
       <div>
         <dt>Languages &amp; tooling</dt>
@@ -184,6 +259,8 @@
       <a href="https://github.com/sagiv-bar">GitHub</a>
       <span aria-hidden="true">&middot;</span>
       <a href="https://www.linkedin.com/in/sagiv-bar">LinkedIn</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="https://arxiv.org/abs/2603.22459">arXiv</a>
     </p>
   </div>
 </footer>

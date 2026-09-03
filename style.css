@@ -298,3 +298,31 @@ a:focus-visible,
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* ---------- paper card ---------- */
+
+.card.paper {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-bg);
+}
+
+.card h3 a {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid transparent;
+}
+
+.card h3 a:hover {
+  color: var(--accent);
+  border-bottom-color: currentColor;
+}
+
+.byline {
+  margin: .45rem 0 0;
+  font-size: .88rem;
+  color: var(--text-soft);
+}
+
+.byline strong { color: var(--text); font-weight: 650; }
+
+.sep { margin-inline: .45rem; color: var(--text-mute); }

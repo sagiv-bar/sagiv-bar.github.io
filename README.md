@@ -1,16 +1,64 @@
 # Sagiv Bar — Portfolio
 
-Signal processing, estimation and machine learning. Currently an algorithm engineer at
-**Starbird**, working on satellite-based positioning — signal acquisition and tracking,
-Doppler-based navigation solutions, and the estimation and calibration layers between raw
-RF and a position fix.
+Algorithm and machine learning engineer, M.Sc in Intelligent Systems & AI. I work across
+applied ML — LLMs and controllable generation, deep learning, and statistical estimation on
+noisy physical signals — picking the method by what the problem needs rather than what is in
+fashion.
 
 **Live site:** https://sagiv-bar.github.io &nbsp;·&nbsp;
 **LinkedIn:** https://www.linkedin.com/in/sagiv-bar
 
 ---
 
-## 1. Blind Noise Estimation & BM3D Denoising
+## Research
+
+### [LLM-guided headline rewriting for clickability enhancement without clickbait](https://arxiv.org/abs/2603.22459)
+
+*arXiv:2603.22459 · cs.CL / cs.AI · March 2026*
+Yehudit Aperstein, Linoy Halifa, **Sagiv Bar**, Alexander Apartsin
+
+Optimising a news headline for engagement usually slides into clickbait. We treat clickbait not
+as a separate style but as the extreme end of amplifying otherwise legitimate engagement cues —
+which turns headline rewriting into a *controllable generation* problem: strengthen specific
+engagement attributes under explicit constraints on semantic faithfulness and proportional
+emphasis.
+
+The framework steers an LLM at inference time using the FUDGE (Future Discriminators for
+Generation) paradigm, with two auxiliary guide models: a clickbait scorer supplying negative
+guidance against stylistic over-amplification, and an engagement-attribute model supplying
+positive guidance toward the target. Both guides train on neutral headlines from a curated news
+corpus, with clickbait counterparts generated synthetically under controlled activation of
+predefined tactics. Tuning the guidance weights walks the output along a continuum from faithful
+paraphrase to maximally engaging-but-defensible.
+
+[Read the paper](https://arxiv.org/abs/2603.22459) · [PDF](https://arxiv.org/pdf/2603.22459)
+
+---
+
+## 1. Beyond Binary Clickbait Detection — Tactic-Level Attribution
+
+*LLMs · NLP · Explainability — joint work with Linoy Halifa*
+
+Most clickbait systems stop at a yes/no verdict, which tells an editor nothing actionable. This
+two-stage framework goes further and names the specific rhetorical tactic being used — curiosity
+gap, unfinished narrative, ambiguous reference, provocative question and seven others — giving
+the classification an explanation rather than just a score.
+
+**Approach.** Stage one is a fine-tuned BERT binary classifier; stage two a multi-label head
+that attributes up to three tactics per headline. Training data combines a real news corpus with
+clickbait generated synthetically via controlled GPT-4o prompting, with the train/test split
+taken **before** generation so no synthetic sibling of a test headline can leak into training.
+The fine-tuned models are then benchmarked head to head against GPT-4o and Gemini 2.5 in
+zero-shot and few-shot settings on the same held-out set, scored with macro/micro F1,
+exact-match ratio and per-class F1 to expose which tactics are genuinely hard.
+
+**Stack.** PyTorch · HuggingFace Transformers · BERT · GPT-4o · Gemini 2.5
+
+[→ Code](https://github.com/LinoyHalifa/NLP_Project)
+
+---
+
+## 2. Blind Noise Estimation & BM3D Denoising
 
 *Image processing · Statistical estimation*
 
@@ -32,7 +80,7 @@ change in variance falls below 10⁻³. The converged σ drives BM3D hard-thresh
 
 ---
 
-## 2. BLE Distance Estimation with Neural Networks
+## 3. BLE Distance Estimation with Neural Networks
 
 *RF · Indoor positioning · Deep learning*
 
@@ -52,9 +100,9 @@ on convergence behaviour rather than a single final number.
 
 ---
 
-## 3. Diabetes Classification — Classical ML vs. Deep Learning
+## 4. Classical ML vs. Deep Learning on Imbalanced Health Data
 
-*Applied ML · Imbalanced data*
+*Applied ML · Model selection*
 
 A ~15,000-record health dataset with a strong class imbalance, used to compare a tuned Random
 Forest against a tuned deep network end to end: EDA, correlation and outlier analysis, feature
@@ -72,7 +120,7 @@ metric on imbalanced data. Model selection in the notebook is driven by F1 and A
 
 ---
 
-## 4. PowderDraw — Autonomous Painting Robot
+## 5. PowderDraw — Autonomous Painting Robot
 
 *Robotics · Sensor fusion · Navigation*
 
@@ -93,4 +141,4 @@ layered on top.
 
 ## Contact
 
-[GitHub](https://github.com/sagiv-bar) · [LinkedIn](https://www.linkedin.com/in/sagiv-bar)
+[GitHub](https://github.com/sagiv-bar) · [LinkedIn](https://www.linkedin.com/in/sagiv-bar) · [arXiv](https://arxiv.org/abs/2603.22459)

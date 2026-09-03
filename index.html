@@ -1,45 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sagiv Bar — Signal Processing &amp; Machine Learning</title>
+<meta name="description" content="Sagiv Bar — signal processing, estimation and machine learning. Satellite navigation, RF, and applied ML projects.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Sagiv Bar — Signal Processing &amp; Machine Learning">
+<meta property="og:description" content="Satellite navigation, RF signal processing, estimation and applied machine learning.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Sagiv Bar Portfolio</h1>
-        <h2>My Projects</h2>
-        <div class="project-section">
-            <h3>Computer Vision</h3>
-            <ul class="project-list">
-                <li>
-                    <a href="https://github.com/sagiv-bar/My-pordfolio/blob/main/README.md" target="_blank">
-                        Gaussian Noise Estimation and Denoising Project
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="project-section">
-            <h3>Neural Networks</h3>
-            <ul class="project-list">
-                <li>
-                    <a href="https://github.com/sagiv-bar/My-pordfolio/blob/main/README.md" target="_blank">
-                        Estimation of BLE Signal Distance Using Artificial Neural Networks
-                    </a>
-                </li>
-            </ul>
-        </div>
-   <div class="project-section">
-            <h3>Autonomous Painting Robot</h3>
-            <ul class="project-list">
-                <li>
-                    <a href="https://github.com/sagiv-bar/My-pordfolio/blob/main/README.md" target="_blank">
-                        Autonomous Robot Navigation & Painting Project (Optical Flow, External Kalman Filter)
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Signal Processing &middot; Estimation &middot; Machine Learning</p>
+    <h1>Sagiv&nbsp;Bar</h1>
+    <p class="lede">
+      I work on turning noisy physical signals into reliable numbers &mdash; RF and satellite
+      measurements into a position, raw sensor readings into a usable estimate. Most of what
+      I do sits where signal processing meets machine learning.
+    </p>
+    <nav class="links" aria-label="Profiles">
+      <a class="btn primary" href="https://github.com/sagiv-bar">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/sagiv-bar">LinkedIn</a>
+      <a class="btn" href="#projects">Projects &darr;</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="now" aria-labelledby="now-h">
+    <h2 id="now-h">Now</h2>
+    <p>
+      Algorithm engineer at <strong>Starbird</strong>, working on satellite-based positioning:
+      signal acquisition and tracking, Doppler-based navigation solutions, and the estimation
+      and calibration layers that sit between raw RF and a position fix.
+    </p>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-h">
+    <h2 id="projects-h">Selected projects</h2>
+
+    <article class="card">
+      <header>
+        <h3>Blind Noise Estimation &amp; BM3D Denoising</h3>
+        <p class="domain">Image processing &middot; Statistical estimation</p>
+      </header>
+      <p>
+        BM3D is one of the strongest denoisers available &mdash; but it needs to be told the
+        noise standard deviation, which in practice you don't know. This project estimates
+        &sigma; directly from the noisy image, then feeds it to BM3D.
+      </p>
+      <p>
+        The image is split into 6&times;6 patches and each is scored by a gradient texture index
+        (Sobel). Textured patches are rejected, and &sigma; is estimated from the remaining flat
+        patches using a chi-square confidence bound on the pooled variance. The threshold
+        separating flat from textured is re-derived from the current estimate and the process
+        iterates until the relative change in variance falls below 10<sup>&minus;3</sup>.
+        Reconstruction quality is measured against ground truth with MSE, SNR, PSNR, SSIM and
+        Pearson correlation.
+      </p>
+      <ul class="tags">
+        <li>Python</li><li>OpenCV</li><li>SciPy</li><li>&chi;&sup2; estimation</li>
+        <li>BM3D</li><li>scikit-image</li>
+      </ul>
+      <p class="actions">
+        <a data-nb="Gaussian_Noise_Estimation_and_Denoising_Using_BM3D_Algorithm.ipynb"
+           href="https://github.com/sagiv-bar/sagiv-bar.github.io/blob/main/Gaussian_Noise_Estimation_and_Denoising_Using_BM3D_Algorithm.ipynb">View notebook</a>
+      </p>
+    </article>
+
+    <article class="card">
+      <header>
+        <h3>BLE Distance Estimation with Neural Networks</h3>
+        <p class="domain">RF &middot; Indoor positioning &middot; Deep learning</p>
+      </header>
+      <p>
+        Mapping BLE signal strength (RSSI) to distance is the core problem in beacon-based
+        indoor positioning, and analytic path-loss models degrade badly indoors because of
+        multipath and absorption. Here the mapping is learned from measurements instead.
+      </p>
+      <p>
+        Using a three-beacon setup with known geometry, ground-truth distances are derived from
+        recorded positions and normalised, then regressed from the RSSI vector with fully
+        connected networks. Four depths (from 128&ndash;64 up to 128&ndash;64&ndash;32&ndash;16&ndash;8)
+        were swept against three activations (sigmoid, ReLU, tanh), with R&sup2; on a held-out set
+        tracked across 250 epochs so architectures are compared on convergence behaviour rather
+        than a single final score.
+      </p>
+      <ul class="tags">
+        <li>TensorFlow</li><li>Keras</li><li>scikit-learn</li><li>BLE / RSSI</li>
+        <li>Regression</li><li>Trilateration</li>
+      </ul>
+      <p class="actions">
+        <a data-nb="Estimation_of_BLE_Signal_Distance_Using_Artificial_Neural_Networks.ipynb"
+           href="https://github.com/sagiv-bar/sagiv-bar.github.io/blob/main/Estimation_of_BLE_Signal_Distance_Using_Artificial_Neural_Networks.ipynb">View notebook</a>
+      </p>
+    </article>
+
+    <article class="card">
+      <header>
+        <h3>Diabetes Classification &mdash; Classical ML vs. Deep Learning</h3>
+        <p class="domain">Applied ML &middot; Imbalanced data</p>
+      </header>
+      <p>
+        A ~15,000-record health dataset with a strong class imbalance, used to compare a
+        tuned Random Forest against a tuned deep network end to end: EDA, correlation and
+        outlier analysis, feature engineering, scaling, then grid search over both model
+        families and over class-balancing strategies.
+      </p>
+      <p>
+        The headline result is a good illustration of why accuracy is the wrong metric here:
+        the best model reaches <strong>97.1% accuracy</strong>, but its
+        <strong>F1 of 0.80</strong> and <strong>ROC&nbsp;AUC of 0.967</strong> are what actually
+        describe its performance &mdash; and a second configuration with nearly identical accuracy
+        (95.3%) collapses to an F1 of 0.61. Model selection in the notebook is driven by F1 and
+        AUC accordingly.
+      </p>
+      <ul class="tags">
+        <li>scikit-learn</li><li>TensorFlow</li><li>pandas</li>
+        <li>Random Forest</li><li>Grid search</li><li>Class imbalance</li>
+      </ul>
+      <p class="actions">
+        <a data-nb="Diabetes_Prediction_(Classification)_Using_Machine_Learning_and_Deep_Learning_Models.ipynb"
+           href="https://github.com/sagiv-bar/sagiv-bar.github.io/blob/main/Diabetes_Prediction_(Classification)_Using_Machine_Learning_and_Deep_Learning_Models.ipynb">View notebook</a>
+      </p>
+    </article>
+
+    <article class="card">
+      <header>
+        <h3>PowderDraw &mdash; Autonomous Painting Robot</h3>
+        <p class="domain">Robotics &middot; Sensor fusion &middot; Navigation</p>
+      </header>
+      <p>
+        A modular ground robot that reproduces large-scale designs on open terrain by
+        dispensing coloured powder along a planned path. The interesting part is the
+        navigation stack: GPS alone is nowhere near precise enough for the job.
+      </p>
+      <p>
+        Built on ArduPilot with a Pixhawk flight controller and a Raspberry Pi companion,
+        fusing GPS, LIDAR, IMU and optical flow through an external Kalman filter to hold
+        position accurately enough for the drawing to come out clean, with path planning and
+        dispensing control layered on top.
+      </p>
+      <ul class="tags">
+        <li>ArduPilot</li><li>Pixhawk</li><li>Raspberry Pi</li>
+        <li>Kalman filter</li><li>Optical flow</li><li>LIDAR / IMU / GPS</li>
+        <li>Path planning</li>
+      </ul>
+      <p class="actions">
+        <a href="https://www.youtube.com/watch?v=O9t15PjKslc">Watch the demo &#9654;</a>
+      </p>
+    </article>
+
+  </section>
+
+  <section class="skills" aria-labelledby="skills-h">
+    <h2 id="skills-h">Toolkit</h2>
+    <dl>
+      <div>
+        <dt>Signal processing &amp; estimation</dt>
+        <dd>DSP, RF, Doppler processing, Kalman filtering, statistical estimation, sensor fusion</dd>
+      </div>
+      <div>
+        <dt>Machine learning</dt>
+        <dd>TensorFlow, Keras, PyTorch, scikit-learn, model selection on imbalanced data</dd>
+      </div>
+      <div>
+        <dt>Languages &amp; tooling</dt>
+        <dd>Python, NumPy, SciPy, pandas, OpenCV, Git, Linux</dd>
+      </div>
+    </dl>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>
+      <a href="https://github.com/sagiv-bar">GitHub</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="https://www.linkedin.com/in/sagiv-bar">LinkedIn</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+// Keep notebook links working even if the repository is renamed:
+// derive owner/repo from the GitHub Pages URL, and fall back to the
+// hard-coded hrefs above if anything is unexpected.
+(function () {
+  try {
+    var host = location.hostname;
+    if (!/\.github\.io$/.test(host)) return;
+    var owner = host.split('.')[0];
+    var seg = location.pathname.split('/').filter(Boolean)[0];
+    var repo = (seg && !/\.[a-z]+$/i.test(seg)) ? seg : host;
+    var base = 'https://github.com/' + owner + '/' + repo + '/blob/main/';
+    document.querySelectorAll('a[data-nb]').forEach(function (a) {
+      a.href = base + encodeURIComponent(a.getAttribute('data-nb'));
+    });
+  } catch (e) { /* keep static hrefs */ }
+})();
+</script>
+
 </body>
 </html>
